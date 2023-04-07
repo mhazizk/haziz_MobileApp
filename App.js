@@ -1,14 +1,16 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import FoodListScreen from "./src/screens/FoodListScreen";
-import { SafeAreaView } from "react-native";
+import StackNavigation from "./src/navigation/StackNavigation";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
     <>
-      <StatusBar />
-      <SafeAreaView />
-      <FoodListScreen />
+      <NavigationContainer>
+        <StatusBar />
+        {/* <SafeAreaView /> */}
+        <StackNavigation />
+      </NavigationContainer>
     </>
   );
 }
