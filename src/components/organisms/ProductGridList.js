@@ -1,15 +1,24 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, RefreshControl } from "react-native";
 import React from "react";
 import CardItem from "../molecules/CardItem";
 
-const ProductGridList = ({ data, onPress }) => {
+const ProductGridList = ({ isLoading, onRefresh, data, onPress }) => {
   return (
     <>
       <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={() => onRefresh()}
+          />
+        }
         data={data}
-        style={{ width: "100%", padding: 16 }}
+        style={{
+          width: "100%",
+          padding: 16,
+        }}
         numColumns={2}
-        contentContainerStyle={{ height: "100%", alignItems: "flex-start" }}
+        contentContainerStyle={{ alignItems: "flex-start", paddingBottom: 128 }}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return (
