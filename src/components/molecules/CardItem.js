@@ -3,23 +3,12 @@ import React from "react";
 import PrimaryButton from "../atoms/PrimaryButton";
 import colorsConstants from "../../constants/colorsConstants";
 import PriceLabel from "../atoms/PriceLabel";
+import shadows from "../../constants/shadowsConstants";
 
 const CardItem = ({ item, onPress }) => {
   const { id, food_code, name, picture, picture_ori, price, created_at } = item;
 
   const width = Dimensions.get("window").width / 2 - 32;
-
-  const shadows =
-    Platform.OS === "ios"
-      ? {
-          shadowColor: "#171717",
-          shadowOffset: { width: -2, height: 4 },
-          shadowOpacity: 0.2,
-          shadowRadius: 3,
-        }
-      : {
-          elevation: 3,
-        };
 
   return (
     <View
@@ -29,7 +18,7 @@ const CardItem = ({ item, onPress }) => {
         alignItems: "center",
         borderRadius: 8,
         margin: 8,
-        backgroundColor: "#eee",
+        backgroundColor: "#ffffff",
         overflow: "hidden",
         ...shadows,
       }}
@@ -56,7 +45,7 @@ const CardItem = ({ item, onPress }) => {
         </View>
         <PrimaryButton
           label="Order"
-          width={width - 32}
+          width={width - 16}
           onPress={() => {
             onPress(food_code);
           }}
