@@ -1,4 +1,4 @@
-import { View, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image, Dimensions, ScrollView } from "react-native";
 import React from "react";
 import PrimaryButton from "../atoms/PrimaryButton";
 import PriceLabel from "../atoms/PriceLabel";
@@ -9,9 +9,9 @@ const CheckoutItem = ({ item }) => {
 
   return (
     <>
-      <View
-        style={{
-          // padding: 16,
+      <ScrollView
+        keyboardDismissMode="interactive"
+        contentContainerStyle={{
           flexDirection: "row",
           width: "100%",
           borderRadius: 16,
@@ -41,7 +41,7 @@ const CheckoutItem = ({ item }) => {
             {"x " + quantity}
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };
