@@ -12,6 +12,7 @@ const PrimaryButton = ({
   width,
   label,
   onPress,
+  ...rest
 }) => {
   return (
     <TouchableOpacity
@@ -26,9 +27,12 @@ const PrimaryButton = ({
         width: width || 200,
         paddingHorizontal: 16,
         paddingVertical: 8,
+        ...rest,
       }}
     >
-      <Text style={{ color: "white" }}>{label || "Primary Button"}</Text>
+      <Text numberOfLines={1} style={{ color: "#ffffff", fontWeight: "bold" }}>
+        {label || "Primary Button"}
+      </Text>
     </TouchableOpacity>
   );
 };
