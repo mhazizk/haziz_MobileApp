@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import colorsConstants from "../../constants/colorsConstants";
+import addNumberDelimiterCurrencyAndStringify from "../../utils/addNumberDelimiterCurrencyAndStringify";
 
 const PriceLabel = ({ price }) => {
   return (
@@ -15,7 +16,9 @@ const PriceLabel = ({ price }) => {
             style={{
               fontWeight: "bold",
             }}
-          >{`Rp. ${price}`}</Text>
+          >
+            {addNumberDelimiterCurrencyAndStringify(price)}
+          </Text>
           <Text style={{ color: "gray" }}> / porsi</Text>
         </Text>
       </Text>
