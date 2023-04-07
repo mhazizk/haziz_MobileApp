@@ -2,6 +2,8 @@ import { View, Text, Image, Dimensions } from "react-native";
 import React from "react";
 import PrimaryButton from "../atoms/PrimaryButton";
 import PriceLabel from "../atoms/PriceLabel";
+import colorsConstants from "../../constants/colorsConstants";
+import SecondaryButton from "../atoms/SecondaryButton";
 
 const CartItem = ({ item, onPress }) => {
   const { id, food_code, name, picture, picture_ori, price, created_at } = item;
@@ -17,7 +19,6 @@ const CartItem = ({ item, onPress }) => {
           flexDirection: "row",
           width: width,
           borderRadius: 16,
-          backgroundColor: "white",
           marginBottom: 8,
           alignItems: "center",
         }}
@@ -39,7 +40,7 @@ const CartItem = ({ item, onPress }) => {
           <PriceLabel price={price} />
         </View>
         <View style={{ flex: 0, flexDirection: "row", alignItems: "center" }}>
-          <PrimaryButton
+          <SecondaryButton
             width={42}
             label="-"
             onPress={() => {
