@@ -4,11 +4,6 @@ import addNumberDelimiterOnlyAndStringify from "../../utils/addNumberDelimiterOn
 import removeDelimiterAndDestringify from "../../utils/removeDelimiterAndDestringify";
 import removeDelimiterAndStringify from "../../utils/removeDelimiterAndStringify";
 
-/**
- *
- * @param keyboardType
- * @returns
- */
 const CustomTextInput = ({
   keyboardType = "default",
   backgroundColor,
