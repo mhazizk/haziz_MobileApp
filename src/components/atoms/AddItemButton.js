@@ -1,15 +1,16 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import colorsConstants from "../../constants/colorsConstants";
 import IonIcons from "react-native-vector-icons/Ionicons";
+import shadows from "../../constants/shadowsConstants";
 
 const AddItemButton = ({ onPress }) => {
   return (
     <TouchableOpacity
       style={{
         position: "absolute",
-        bottom: 32,
-        right: 32,
+        bottom: 16,
+        right: 16,
       }}
       onPress={() => onPress()}
     >
