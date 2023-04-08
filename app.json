@@ -4,12 +4,12 @@
     "slug": "haziz_MobileApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#233C7D"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -18,13 +18,23 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.mhazizk.haziz_MobileApp",
+      "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#233C7D"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ecfa7c03-2b52-4954-8e9c-4d8563bce0a2"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
