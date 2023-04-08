@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
+  Modal,
 } from "react-native";
 import React from "react";
 import CartItem from "../molecules/CartItem";
@@ -19,6 +20,7 @@ import PopupTitle from "../molecules/PopupTitle";
 import addNumberDelimiterOnlyAndStringify from "../../utils/addNumberDelimiterOnlyAndStringify";
 import InputRow from "../molecules/InputRow";
 import TextRow from "../molecules/TextRow";
+import shadows from "../../constants/shadowsConstants";
 
 const PopupCheckout = ({ cartList, onPressDismiss }) => {
   const [cash, setCash] = React.useState(0);
@@ -29,66 +31,72 @@ const PopupCheckout = ({ cartList, onPressDismiss }) => {
 
   return (
     <>
-      <View
-        style={{
-          left: 0,
-          right: 0,
-          bottom: 0,
-          marginHorizontal: 16,
-          paddingHorizontal: 16,
-          paddingTop: 16,
-          paddingBottom: 48,
-          alignSelf: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "absolute",
-          maxHeight: maxHeight,
-          zIndex: 10,
-          backgroundColor: "#ffffff",
-          borderRadius: 16,
-        }}
-      >
-        <CloseButton onPress={() => onPressDismiss()} />
-        <PopupTitle title="Detail Pesanan" />
-
-        <ScrollView
-          contentContainerStyle={{
-            width: "100%",
+      <Modal animationType="slide" visible={true} transparent={true}>
+        <View
+          style={{
+            left: 0,
+            right: 0,
+            bottom: 0,
+            marginHorizontal: 16,
+            paddingHorizontal: 16,
+            paddingTop: 16,
+            paddingBottom: 48,
+            alignSelf: "center",
             alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            maxHeight: maxHeight,
+            zIndex: 10,
+            backgroundColor: "#ffffff",
+            borderRadius: 16,
+            ...shadows,
           }}
         >
-          {cartList.length > 0 &&
-            cartList.map((item) => <CheckoutItem key={item?.id} item={item} />)}
-          <TextRow
-            rowName="Total"
-            paddingTop={16}
-            value={addNumberDelimiterOnlyAndStringify(getTotalPrice(cartList))}
-          />
-          <InputRow
-            rowName="Uang Dibayar"
-            keyboardType="numeric"
-            value={cash}
-            onChange={(number) => {
-              setCash(number);
+          <CloseButton onPress={() => onPressDismiss()} />
+          <PopupTitle title="Detail Pesanan" />
+
+          <ScrollView
+            contentContainerStyle={{
+              width: "100%",
+              alignItems: "center",
             }}
-          />
-          <TextRow
-            rowName="Kembalian"
-            paddingBottom={16}
-            backgroundColor={change < 0 ? "pink" : "#D6E6D8"}
-            textColor={change < 0 ? colorsConstants.danger : "black"}
-            value={addNumberDelimiterOnlyAndStringify(change)}
-          />
-        </ScrollView>
+          >
+            {cartList.length > 0 &&
+              cartList.map((item) => (
+                <CheckoutItem key={item?.id} item={item} />
+              ))}
+            <TextRow
+              rowName="Total"
+              paddingTop={16}
+              value={addNumberDelimiterOnlyAndStringify(
+                getTotalPrice(cartList)
+              )}
+            />
+            <InputRow
+              rowName="Uang Dibayar"
+              keyboardType="numeric"
+              value={cash}
+              onChange={(number) => {
+                setCash(number);
+              }}
+            />
+            <TextRow
+              rowName="Kembalian"
+              paddingBottom={16}
+              backgroundColor={change < 0 ? "pink" : "#D6E6D8"}
+              textColor={change < 0 ? colorsConstants.danger : "black"}
+              value={addNumberDelimiterOnlyAndStringify(change)}
+            />
+          </ScrollView>
 
-        <PrimaryButton
-          isEnabled={cash >= getTotalPrice(cartList)}
-          label="Cetak Struk"
-          onPress={() => alert("Struk berhasil dicetak!")}
-        />
-      </View>
-
-      <TouchableOpacity
+          <PrimaryButton
+            isEnabled={cash >= getTotalPrice(cartList)}
+            label="Cetak Struk"
+            onPress={() => alert("Struk berhasil dicetak!")}
+          />
+        </View>
+      </Modal>
+      <View
         style={{
           position: "absolute",
           top: 0,
@@ -98,7 +106,6 @@ const PopupCheckout = ({ cartList, onPressDismiss }) => {
           backgroundColor: "rgba(0,0,0,0.8)",
           zIndex: 9,
         }}
-        onPress={() => onPressDismiss()}
       />
     </>
   );

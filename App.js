@@ -8,7 +8,6 @@ export default function App() {
     <>
       <NavigationContainer>
         <StatusBar />
-        {/* <SafeAreaView /> */}
         <StackNavigation />
       </NavigationContainer>
     </>

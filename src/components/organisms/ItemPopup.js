@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  Modal,
+} from "react-native";
 import React from "react";
 import PrimaryButton from "../atoms/PrimaryButton";
 import colorsConstants from "../../constants/colorsConstants";
@@ -43,88 +50,90 @@ const NewItemPopup = ({
 
   return (
     <>
-      <View
-        style={{
-          position: "absolute",
-          paddingTop: 16,
-          paddingHorizontal: 16,
-          paddingBottom: 48,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          marginHorizontal: 16,
-          alignSelf: "center",
-          backgroundColor: "#ffffff",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 8,
-          zIndex: 10,
-        }}
-      >
-        <CloseButton onPress={() => onPressDismiss()} />
-        <PopupTitle title={selectedItem ? "Update Item" : "Add Item"} />
-        {item.picture && (
-          <Image
-            source={{ uri: item.picture }}
-            defaultSource={require("../../assets/image_placeholder.png")}
-            style={{
-              width: "100%",
-              height: 200,
-              borderRadius: 8,
-              marginBottom: 16,
-              backgroundColor: colorsConstants.secondary,
-            }}
-          />
-        )}
+      <Modal animationType="slide" visible={true} transparent={true}>
         <View
           style={{
-            width: "100%",
-            paddingBottom: 16,
+            position: "absolute",
+            paddingTop: 16,
+            paddingHorizontal: 16,
+            paddingBottom: 48,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            marginHorizontal: 16,
+            alignSelf: "center",
+            backgroundColor: "#ffffff",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 8,
+            zIndex: 10,
           }}
         >
-          <InputRow isEnabled={false} rowName="Code" value={item.food_code} />
-          <InputRow
-            rowName="Name"
-            value={item.name}
-            onChange={(text) => {
-              setItem({
-                ...item,
-                name: text,
-              });
+          <CloseButton onPress={() => onPressDismiss()} />
+          <PopupTitle title={selectedItem ? "Update Item" : "Add Item"} />
+          {item.picture && (
+            <Image
+              source={{ uri: item.picture }}
+              defaultSource={require("../../assets/image_placeholder.png")}
+              style={{
+                width: "100%",
+                height: 200,
+                borderRadius: 8,
+                marginBottom: 16,
+                backgroundColor: colorsConstants.secondary,
+              }}
+            />
+          )}
+          <View
+            style={{
+              width: "100%",
+              paddingBottom: 16,
             }}
-          />
-          <InputRow
-            rowName="Price"
-            keyboardType="numeric"
-            value={item.price}
-            onChange={(text) => {
-              setItem({
-                ...item,
-                price: text,
-              });
-            }}
-          />
-          <InputRow
-            rowName="Picture URL"
-            value={item.picture}
-            onChange={(text) => {
-              setItem({
-                ...item,
-                picture: text,
-              });
+          >
+            <InputRow isEnabled={false} rowName="Code" value={item.food_code} />
+            <InputRow
+              rowName="Name"
+              value={item.name}
+              onChange={(text) => {
+                setItem({
+                  ...item,
+                  name: text,
+                });
+              }}
+            />
+            <InputRow
+              rowName="Price"
+              keyboardType="numeric"
+              value={item.price}
+              onChange={(text) => {
+                setItem({
+                  ...item,
+                  price: text,
+                });
+              }}
+            />
+            <InputRow
+              rowName="Picture URL"
+              value={item.picture}
+              onChange={(text) => {
+                setItem({
+                  ...item,
+                  picture: text,
+                });
+              }}
+            />
+          </View>
+          <PrimaryButton
+            isEnabled={showButton}
+            label={selectedItem ? "Update Item" : "Add Item"}
+            onPress={() => {
+              setShowButton(false);
+              onPressFinish(selectedItem ? "update" : "add", item);
             }}
           />
         </View>
-        <PrimaryButton
-          isEnabled={showButton}
-          label={selectedItem ? "Update Item" : "Add Item"}
-          onPress={() => {
-            setShowButton(false);
-            onPressFinish(selectedItem ? "update" : "add", item);
-          }}
-        />
-      </View>
-      <TouchableOpacity
+      </Modal>
+      <View
         style={{
           position: "absolute",
           top: 0,
@@ -134,7 +143,6 @@ const NewItemPopup = ({
           backgroundColor: "rgba(0,0,0,0.8)",
           zIndex: 9,
         }}
-        onPress={() => onPressDismiss()}
       />
     </>
   );
